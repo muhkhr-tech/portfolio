@@ -1,6 +1,7 @@
 import { relations } from 'drizzle-orm';
 import {
     boolean,
+    date,
     integer,
     pgTable,
     primaryKey,
@@ -64,6 +65,7 @@ export const User = pgTable(
     {
       id: serial('id').primaryKey(),
       description: text('description').notNull().unique(),
+      purchaseDate: date('purchase_date').notNull(),
       createdAt: timestamp('created_at').defaultNow().notNull(),
       updatedAt: timestamp('updated_at').defaultNow().notNull(),
     }
@@ -76,6 +78,10 @@ export const User = pgTable(
   export const ShoppingItem = pgTable('shopping_items', {
     itemId: integer('item_id').notNull().references(() => Item.id),
     shoppingId: integer('shopping_id').notNull().references(() => Shopping.id),
+    amount: integer('amount'),
+    price: integer('price'),
+    unit: text('unit'),
+    totalPrice: integer('total_price')
   }, (t) => ({
     pk: primaryKey(t.itemId, t.shoppingId),
   }),
