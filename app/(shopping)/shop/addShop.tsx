@@ -83,7 +83,7 @@ export default function AddShop({ items }: any) {
         })
         return prevData.filter((item: any) => item.id !== parseInt(e.target.value))
       } else {
-       
+
         return [...prevData, {
           id: parseInt(e.target.value),
           price: parseInt(e.target.id.split('-')[1])
@@ -166,7 +166,9 @@ export default function AddShop({ items }: any) {
         </div>}
 
       <button className="btn btn-sm mb-5 text-white btn-success" onClick={handleChange}>
-        + Tambah
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+          <path fillRule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z" clipRule="evenodd" />
+        </svg> Tambah
       </button>
 
       <input

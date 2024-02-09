@@ -70,15 +70,17 @@ export default function AddItemType() {
           </div>
         </div>}
 
-        {messageInfo.status == "error" &&
+      {messageInfo.status == "error" &&
         <div className="toast toast-center z-50">
           <div className="alert alert-error text-white py-2">
             <span>{messageInfo.message}</span>
           </div>
         </div>}
 
-      <button className="btn btn-sm mb-5 btn-success" onClick={handleChange}>
-        + Tambah
+      <button className="btn btn-sm mb-5 text-white btn-success" onClick={handleChange}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+          <path fillRule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z" clipRule="evenodd" />
+        </svg> Tambah
       </button>
 
       <input

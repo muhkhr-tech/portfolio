@@ -8,8 +8,8 @@ export default async function ItemTypePage() {
 
   return (
     <div>
-      <h4 className="ms-5">Jenis Barang</h4>
-      <div className="p-5">
+      <h4 className="">Jenis Barang</h4>
+      <div className="">
         <AddItemType />
         <div className="relative overflow-x-auto">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

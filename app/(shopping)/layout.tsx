@@ -7,15 +7,17 @@ export const metadata: Metadata = {
   description: "Belanja Bulanan",
 };
 
-export default function RootLayout({
+export default function ShoppingLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex min-h-screen">
+    <div className="block sm:flex">
       <SidebarSection/>
-      <div className="w-full">{children}</div>
+      <div className="w-full p-5">
+        <h1></h1>
+        {children}</div>
     </div>
   );
 }

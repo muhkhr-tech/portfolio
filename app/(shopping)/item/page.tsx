@@ -9,7 +9,7 @@ export default async function ItemPage() {
   const itemTypes = await resp_item_type.json()
 
   return (
-    <div className=" p-5">
+    <div className="">
       <AddItem itemTypes={itemTypes}/>
       <div className="relative overflow-x-auto">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
