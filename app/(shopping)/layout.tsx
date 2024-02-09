@@ -3,7 +3,7 @@ import "@/app/globals.css";
 import SidebarSection from "./components/sidebar";
 
 export const metadata: Metadata = {
-  title: "Belanja Yuk",
+  title: "Belanjain Aja, Yuk!",
   description: "Belanja Bulanan",
 };
 
