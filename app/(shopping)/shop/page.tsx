@@ -27,7 +27,7 @@ export default async function ShopPage() {
               </tr>
             </thead>
             <tbody>
-              {rows.map((row, index) => (
+              {rows.map((row: any, index) => (
                 <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   <td className="px-6 py-4">{index + 1}</td>
                   <td className="px-6 py-4">{new Intl.DateTimeFormat('id', {

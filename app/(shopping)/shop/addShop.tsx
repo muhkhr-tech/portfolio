@@ -14,12 +14,9 @@ export default function AddShop({ items }: any) {
   })
   const [itemSearched, setItemSearched] = useState(items)
   const [itemName, setItemName] = useState('')
-  const [amount, setAmount] = useState([0])
-  const [unit, setUnit] = useState([''])
-  const [itemsChecked, setItemsChecked] = useState([{
-    id: 0,
-    price: 0
-  }])
+  const [amount, setAmount] = useState<number[]>([])
+  const [unit, setUnit] = useState<string[]>([])
+  const [itemsChecked, setItemsChecked] = useState([])
   const [messageInfo, setMessageInfo] = useState({
     status: '',
     message: ''
@@ -67,29 +64,32 @@ export default function AddShop({ items }: any) {
   }
 
   const handleCheck = (e: any) => {
-    setItemsChecked((prevData) => {
+    setItemsChecked((prevData: any) => {
       const isItemChecked = prevData.some(
-        (item) => item.id === parseInt(e.target.value)
+        (item: any) => item.id === parseInt(e.target.value)
       )
 
       if (isItemChecked) {
-        amount.splice(prevData.findIndex((item) => item.id === parseInt(e.target.value)))
-        setAmount(amount)
+        setAmount((prevAmount) => {
+          const updatedAmount = [...prevAmount]
+          updatedAmount[parseInt(e.target.id.split("-")[0])] = 0
+          return updatedAmount
+        })
 
-        unit.splice(prevData.findIndex((item) => item.id === parseInt(e.target.value)))
-        setUnit(unit)
-        return prevData.filter((item) => item.id !== parseInt(e.target.value))
+        setUnit((prevUnit) => {
+          const updatedUnit = [...prevUnit]
+          updatedUnit[parseInt(e.target.id.split("-")[0])] = ''
+          return updatedUnit
+        })
+        return prevData.filter((item: any) => item.id !== parseInt(e.target.value))
       } else {
+       
         return [...prevData, {
           id: parseInt(e.target.value),
           price: parseInt(e.target.id.split('-')[1])
         }];
       }
     })
-
-    console.log(itemsChecked,'---')
-    console.log(amount,'............')
-    console.log(unit,'+++++')
   }
 
   const handleInput = (e: any) => {
@@ -100,81 +100,53 @@ export default function AddShop({ items }: any) {
   }
 
   const handleAmountInput = (e: any) => {
-    if (amount.length > 0) {
-      console.log('1')
-    amount.splice(itemsChecked.findIndex((item) => item.id == e.target.id.split("-")[1]), 1, parseInt(e.target.value))
-    } else {
-      console.log('2')
-      amount.splice(itemsChecked.findIndex((item) => item.id == e.target.id.split("-")[1]), 0, parseInt(e.target.value))
-    }
-    setAmount(amount)
-    // setAmount((prevData) => {
-    //   return prevData.map((prevItem, index) => {
-    //     if (index===itemsChecked.findIndex((item) => item.id===e.target.id.split("-")[1])) {
-    //       return parseInt(e.target.value)
-    //     } else {
-    //       return prevItem
-    //     }
-    //   })
-    // })
+    setAmount((prevData) => {
+      const updatedAmount = [...prevData]
+      updatedAmount[parseInt(e.target.id.split("-")[1])] = parseInt(e.target.value)
+      return updatedAmount
+    })
   }
 
   const handleUnitInput = (e: any) => {
-    // if (unit.length > 0) {
-    //   unit.splice(itemsChecked.findIndex((item) => item.id == e.target.id.split("-")[1]), 1, e.target.value)
-    //   } else {
-    //     unit.splice(itemsChecked.findIndex((item) => item.id == e.target.id.split("-")[1]), 0, e.target.value)
-    //   }
-    //   setUnit(unit)
     setUnit((prevData) => {
-      return prevData.map((prevItem, index) => {
-        if (index===itemsChecked.findIndex((item) => item.id===e.target.id.split("-")[1])) {
-          return e.target.value
-        } else {
-          return prevItem
-        }
-      })
+      const updatedUnit = [...prevData]
+      updatedUnit[parseInt(e.target.id.split("-")[1])] = e.target.value
+      return updatedUnit
     })
   }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
 
-    // setLoading(false)
+    try {
+      await AddShopAction(inputData, itemsChecked, amount, unit)
+      router.refresh()
+      setModal(false)
+      setMessageInfo((prevData) => ({
+        ...prevData,
+        ["status"]: "success",
+        ["message"]: "Berhasil menambah data."
+      }))
 
-    console.log(itemsChecked)
-    console.log(amount,'amount')
-    console.log(unit,'unit')
+      setInputData((prevData) => ({
+        ...prevData,
+        ['purchaseDate']: '',
+        ['description']: ''
+      }))
 
-    // try {
-    //   await AddShopAction(inputData, itemsChecked, amount, unit)
-    //   router.refresh()
-    //   setModal(false)
-    //   setMessageInfo((prevData) => ({
-    //     ...prevData,
-    //     ["status"]: "success",
-    //     ["message"]: "Berhasil menambah data."
-    //   }))
+      setItemsChecked([])
 
-    //   setInputData((prevData) => ({
-    //     ...prevData,
-    //     ['purchaseDate']: '',
-    //     ['description']: ''
-    //   }))
+    } catch (err) {
+      setMessageInfo((prevData) => ({
+        ...prevData,
+        ["status"]: "error",
+        ["message"]: "Gagal menambah data."
+      }))
 
-    //   setItemsChecked([])
-
-    // } catch (err) {
-    //   setMessageInfo((prevData) => ({
-    //     ...prevData,
-    //     ["status"]: "error",
-    //     ["message"]: "Gagal menambah data."
-    //   }))
-
-    // } finally {
-    //   setLoading(false)
-    //   setTimeout(hideMassageInfo, 2000)
-    // }
+    } finally {
+      setLoading(false)
+      setTimeout(hideMassageInfo, 2000)
+    }
   }
 
   return (
@@ -193,7 +165,7 @@ export default function AddShop({ items }: any) {
           </div>
         </div>}
 
-      <button className="btn btn-sm mb-5 btn-success" onClick={handleChange}>
+      <button className="btn btn-sm mb-5 text-white btn-success" onClick={handleChange}>
         + Tambah
       </button>
 
@@ -262,7 +234,7 @@ export default function AddShop({ items }: any) {
                         <th scope="col" className="px-1 py-0 w-1">No.</th>
                         <th scope="col" className="px-6 py-0">Nama Barang</th>
                         <th scope="col" className="px-6 py-0">Harga</th>
-                        <th scope="col" className="px-6 py-0 w-3">Jumlah</th>
+                        <th scope="col" className="w-4">Jumlah</th>
                         <th scope="col" className="px-6 py-0 w-3">Satuan</th>
                       </tr>
                     </thead>
@@ -272,37 +244,37 @@ export default function AddShop({ items }: any) {
                           <td>
                             <div className="form-control">
                               <label className="cursor-pointer label">
-                                <input type="checkbox" checked={itemsChecked.some((item) => item.id === row.id)} value={row.id} id={row.id+"-"+row.price} onChange={handleCheck} className="checkbox checkbox-warning" />
+                                <input type="checkbox" checked={itemsChecked.some((item: any) => item.id === row.id)} value={row.id} id={index + "-" + row.price} onChange={handleCheck} className="checkbox checkbox-warning" />
                               </label>
                             </div>
                           </td>
                           <td className="px-1 w-1">{index + 1}</td>
                           <td className="px-6">{row.name}</td>
                           <td className="px-6">{row.price}</td>
-                          <td className="px-6">
+                          <td className="">
                             <input
                               type="number"
                               min={1}
-                              id={"amount-" + row.id}
-                              value={amount[itemsChecked.findIndex((item) => item.id === row.id)]}
+                              id={"amount-" + index}
+                              value={amount[index] || ''}
                               onChange={handleAmountInput}
                               required
                               autoComplete="off"
                               placeholder="2"
-                              disabled={!itemsChecked.some((item) => item.id === row.id)}
+                              disabled={!itemsChecked.some((item: any) => item.id === row.id)}
                               className="input input-sm w-full input-bordered"
                             />
                           </td>
                           <td className="px-6">
                             <input
                               type="text"
-                              id={"unit-" + row.id}
-                              // value={unit[itemsChecked.findIndex((item) => item.id === row.id)]}
+                              id={"unit-" + index}
+                              value={unit[index] || ''}
                               onChange={handleUnitInput}
                               required
                               autoComplete="off"
                               placeholder="kg"
-                              disabled={!itemsChecked.some((item) => item.id === row.id)}
+                              disabled={!itemsChecked.some((item: any) => item.id === row.id)}
                               className="input input-sm w-full input-bordered"
                             />
                           </td>
