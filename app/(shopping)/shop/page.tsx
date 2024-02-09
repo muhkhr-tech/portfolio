@@ -1,11 +1,11 @@
-import { db } from "@/lib/db"
-import { Item, Shopping } from "@/lib/schema"
 import AddShop from "./addShop"
 
 export default async function ShopPage() {
-  const rows = await db.select().from(Shopping)
+  const resp_shop = await fetch("http://localhost:3000/api/shopping", {cache: "no-store"})
+  const rows = await resp_shop.json()
 
-  const items = await db.select().from(Item)
+  const resp_item = await fetch("http://localhost:3000/api/item", {cache: "no-store"})
+  const items = await resp_item.json()
 
   return (
     <div>
@@ -27,7 +27,7 @@ export default async function ShopPage() {
               </tr>
             </thead>
             <tbody>
-              {rows.map((row: any, index) => (
+              {rows.map((row: any, index: number) => (
                 <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   <td className="px-6 py-4">{index + 1}</td>
                   <td className="px-6 py-4">{new Intl.DateTimeFormat('id', {

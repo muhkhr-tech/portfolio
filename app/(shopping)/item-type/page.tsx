@@ -1,11 +1,10 @@
-import { db } from "@/lib/db"
-import { ItemType } from "@/lib/schema"
 import AddItemType from "./addItemType";
 import ActivateButton from "./components/button/activate";
 
 export default async function ItemTypePage() {
 
-  const rows = await db.select().from(ItemType)
+  const resp = await fetch("http://localhost:3000/api/item-type", {cache: 'no-store'})
+  const rows = await resp.json()
 
   return (
     <div>
@@ -28,7 +27,7 @@ export default async function ItemTypePage() {
               </tr>
             </thead>
             <tbody>
-              {rows.map((row, index) => (
+              {rows.map((row: any, index: number) => (
                 <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   <td className="px-6 py-4">{index + 1}</td>
                   <td className="px-6 py-4">{row.name}</td>
