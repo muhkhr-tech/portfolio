@@ -1,11 +1,11 @@
-import { db } from "@/lib/db"
-import { Item, Shopping } from "@/lib/schema"
 import AddShop from "./addShop"
 
 export default async function ShopPage() {
-  const rows = await db.select().from(Shopping)
+  const resp_shop = await fetch(`${process.env.BASE_URL}/api/shopping`, {cache: "no-store"})
+  const rows = await resp_shop.json()
 
-  const items = await db.select().from(Item)
+  const resp_item = await fetch(`${process.env.BASE_URL}/api/item`, {cache: "no-store"})
+  const items = await resp_item.json()
 
   return (
     <div>
@@ -27,15 +27,16 @@ export default async function ShopPage() {
               </tr>
             </thead>
             <tbody>
-              {rows.map((row: any, index) => (
+              {rows.map((row: any, index: number) => (
                 <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   <td className="px-6 py-4">{index + 1}</td>
-                  <td className="px-6 py-4">{new Intl.DateTimeFormat('id', {
+                  {/* <td className="px-6 py-4">{new Intl.DateTimeFormat('id', {
                     weekday: 'long',
                     day: 'numeric',
                     month: 'long',
                     year: 'numeric',
-                  }).format(row.purchaseDate)}</td>
+                  }).format(row.purchaseDate)}</td> */}
+                  <td>{row.purchaseDate}</td>
                   <td className="px-6 py-4">{row.description}</td>
                 </tr>
               ))}

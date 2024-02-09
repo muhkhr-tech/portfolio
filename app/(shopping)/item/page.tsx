@@ -1,12 +1,12 @@
-import { db } from "@/lib/db"
-import { Item, ItemType } from "@/lib/schema"
 import AddItem from "./addItem";
 import EditItem from "./editItem";
 
 export default async function ItemPage() {
-  const rows = await db.select().from(Item)
+  const resp_item = await fetch(`${process.env.BASE_URL}/api/item`, {cache: "no-store"})
+  const rows = await resp_item.json()
 
-  const itemTypes = await db.select().from(ItemType)
+  const resp_item_type = await fetch(`${process.env.BASE_URL}/api/item-type`, {cache: "no-store"})
+  const itemTypes = await resp_item_type.json()
 
   return (
     <div className=" p-5">
@@ -33,7 +33,7 @@ export default async function ItemPage() {
             </tr>
           </thead>
           <tbody>
-            {rows.map((row, index) => (
+            {rows.map((row: any, index: number) => (
               <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td className="px-6 py-4">{index + 1}</td>
                 <td className="px-6 py-4">{row.name}</td>
