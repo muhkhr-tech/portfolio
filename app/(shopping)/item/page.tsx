@@ -2,10 +2,10 @@ import AddItem from "./addItem";
 import EditItem from "./editItem";
 
 export default async function ItemPage() {
-  const resp_item = await fetch("http://localhost:3000/api/item", {cache: "no-store"})
+  const resp_item = await fetch(`${process.env.BASE_URL}/api/item`, {cache: "no-store"})
   const rows = await resp_item.json()
 
-  const resp_item_type = await fetch("http://localhost:3000/api/item-type", {cache: "no-store"})
+  const resp_item_type = await fetch(`${process.env.BASE_URL}/api/item-type`, {cache: "no-store"})
   const itemTypes = await resp_item_type.json()
 
   return (

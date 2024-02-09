@@ -1,10 +1,10 @@
 import AddShop from "./addShop"
 
 export default async function ShopPage() {
-  const resp_shop = await fetch("http://localhost:3000/api/shopping", {cache: "no-store"})
+  const resp_shop = await fetch(`${process.env.BASE_URL}/api/shopping`, {cache: "no-store"})
   const rows = await resp_shop.json()
 
-  const resp_item = await fetch("http://localhost:3000/api/item", {cache: "no-store"})
+  const resp_item = await fetch(`${process.env.BASE_URL}/api/item`, {cache: "no-store"})
   const items = await resp_item.json()
 
   return (

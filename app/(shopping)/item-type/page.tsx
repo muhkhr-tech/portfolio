@@ -3,7 +3,7 @@ import ActivateButton from "./components/button/activate";
 
 export default async function ItemTypePage() {
 
-  const resp = await fetch("http://localhost:3000/api/item-type", {cache: 'no-store'})
+  const resp = await fetch(`${process.env.BASE_URL}/api/item-type`, {cache: 'no-store'})
   const rows = await resp.json()
 
   return (
