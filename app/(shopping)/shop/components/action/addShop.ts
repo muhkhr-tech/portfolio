@@ -12,14 +12,16 @@ export default async function AddShopAction(inputData: any, itemsChecked: any) {
 
     itemsChecked.map(async (item: any) => {
       
-      await db.insert(ShoppingItem).values({
-        itemId: item.id,
-        shoppingId: shop[0].id,
-        amount: item.amount,
-        price: item.price,
-        unit: item.unit,
-        totalPrice: item.amount * item.price
-      })
+      if (item.id !== 0) {
+        await db.insert(ShoppingItem).values({
+          itemId: item.id,
+          shoppingId: shop[0].id,
+          amount: item.amount,
+          price: item.price,
+          unit: item.unit,
+          totalPrice: item.amount * item.price
+        })
+      }
     })
 
   } catch (err) {
