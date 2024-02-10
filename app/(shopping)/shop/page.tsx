@@ -1,10 +1,11 @@
 import AddShop from "./addShop"
+import DetailShop from "./detailShop"
 
 export default async function ShopPage() {
-  const resp_shop = await fetch(`${process.env.BASE_URL}/api/shopping`, {cache: "no-store"})
+  const resp_shop = await fetch(`${process.env.BASE_URL}/api/shopping`, { cache: "no-store" })
   const rows = await resp_shop.json()
 
-  const resp_item = await fetch(`${process.env.BASE_URL}/api/item`, {cache: "no-store"})
+  const resp_item = await fetch(`${process.env.BASE_URL}/api/item`, { cache: "no-store" })
   const items = await resp_item.json()
 
   const convertPurchasedDate = (date: string) => {
@@ -15,7 +16,22 @@ export default async function ShopPage() {
   return (
     <div>
       <div className="block sm:hidden">
-      <AddShop items={items} />
+        <AddShop items={items} />
+        {rows.map((row: any, index: number) => (
+          <div className="flex justify-between items-center py-1 border-b-2 my-1">
+            <div key={index} className="px-1">
+              <div className="text-xs font-semibold">{index + 1}.
+                {new Intl.DateTimeFormat('id', {
+                  weekday: 'long',
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric',
+                }).format(convertPurchasedDate(row.purchaseDate))}</div>
+              <div className="text-xs">{row.description}</div>
+            </div>
+            <DetailShop item={row}/>
+          </div>
+        ))}
       </div>
       <div className="hidden sm:block">
         <AddShop items={items} />
@@ -39,6 +55,7 @@ export default async function ShopPage() {
                     year: 'numeric',
                   }).format(convertPurchasedDate(row.purchaseDate))}</td>
                   <td className="px-6 py-4">{row.description}</td>
+                  <td><DetailShop item={row}/></td>
                 </tr>
               ))}
             </tbody>
