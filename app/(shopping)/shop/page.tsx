@@ -18,8 +18,8 @@ export default async function ShopPage() {
       <div className="block sm:hidden">
         <AddShop items={items} />
         {rows.map((row: any, index: number) => (
-          <div className="flex justify-between items-center py-1 border-b-2 my-1">
-            <div key={index} className="px-1">
+          <div key={index} className="flex justify-between items-center py-1 border-b-2 my-1">
+            <div className="px-1">
               <div className="text-xs font-semibold">{index + 1}.
                 {new Intl.DateTimeFormat('id', {
                   weekday: 'long',
@@ -42,6 +42,8 @@ export default async function ShopPage() {
                 <th scope="col" className="px-6 py-3 w-3">No.</th>
                 <th scope="col" className="px-6 py-3">Tanggal Beli</th>
                 <th scope="col" className="px-6 py-3">Keterangan</th>
+                <th scope="col" className="px-6 py-3">Dibuat</th>
+                <th scope="col" className="px-6 py-3">Detail</th>
               </tr>
             </thead>
             <tbody>
@@ -54,6 +56,14 @@ export default async function ShopPage() {
                     month: 'long',
                     year: 'numeric',
                   }).format(convertPurchasedDate(row.purchaseDate))}</td>
+                  <td className="px-6 py-4">{new Intl.DateTimeFormat('id', {
+                    weekday: 'long',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                  }).format(convertPurchasedDate(row.createdAt))}</td>
                   <td className="px-6 py-4">{row.description}</td>
                   <td><DetailShop item={row}/></td>
                 </tr>

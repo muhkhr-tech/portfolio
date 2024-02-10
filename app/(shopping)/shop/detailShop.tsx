@@ -33,10 +33,8 @@ export default function DetailShop({ item }: any) {
         Detail
       </button>
 
-      <button className="hidden sm:flex btn btn-sm mb-5 text-white btn-success" onClick={handleChange}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-          <path fillRule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z" clipRule="evenodd" />
-        </svg> Tambah
+      <button className="hidden sm:flex btn btn-sm  text-white btn-info" onClick={handleChange}>
+        Detail
       </button>
 
       <input
@@ -71,8 +69,8 @@ export default function DetailShop({ item }: any) {
 
           <div className="relative overflow-x-auto">
             {isLoadData ? <span className="loading"></span>
-              : <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              : <table className="w-full text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" className=" py-0 w-0">#</th>
                     <th scope="col" className="px-3 py-0">Nama Barang</th>
