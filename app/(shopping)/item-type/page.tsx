@@ -8,8 +8,13 @@ export default async function ItemTypePage() {
 
   return (
     <div>
-      <h4 className="">Jenis Barang</h4>
-      <div className="">
+      <div className="block sm:hidden">
+        {rows.map((row: any, index: number) => (
+          <div key={index} className="mb-1 border-b-2">
+            <h4 className="font-semibold text-xs">{index+1}. {row.name}</h4>
+          </div>))}
+      </div>
+      <div className="hidden sm:block">
         <AddItemType />
         <div className="relative overflow-x-auto">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

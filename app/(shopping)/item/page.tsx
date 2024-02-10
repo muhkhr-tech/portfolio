@@ -13,7 +13,7 @@ export default async function ItemPage() {
       <div className="block sm:hidden">
         {rows.map((row: any, index: number) => (
           <div key={index} className="mb-1 border-b-2">
-            <h4 className="font-bold text-sm">{index+1}. {row.items.name}</h4>
+            <h4 className="font-semibold text-xs">{index+1}. {row.items.name}</h4>
             <p className="text-xs">Rp{row.items.price}</p>
           </div>))}
       </div>
