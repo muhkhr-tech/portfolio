@@ -83,10 +83,10 @@ export default function DetailShop({ item }: any) {
                   {items.map((row: any, index: any) => (
                     <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                       <td className="">{index + 1}</td>
-                      <td className="px-3">{row.itemId}</td>
-                      <td className="px-1">{row.price}/{row.unit}</td>
-                      <td className="px-1">{row.amount}</td>
-                      <td className="px-1">{row.totalPrice}</td>
+                      <td className="px-3">{row.items.name}</td>
+                      <td className="px-1">{row.shopping_items.price}/{row.shopping_items.unit}</td>
+                      <td className="px-1">{row.shopping_items.amount}</td>
+                      <td className="px-1">{row.shopping_items.totalPrice}</td>
                     </tr>
                   ))}
                 </tbody>
