@@ -14,7 +14,10 @@ export default async function ShopPage() {
 
   return (
     <div>
-      <div className="">
+      <div className="block sm:hidden">
+      <AddShop items={items} />
+      </div>
+      <div className="hidden sm:block">
         <AddShop items={items} />
         <div className="relative overflow-x-auto">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
