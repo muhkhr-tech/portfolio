@@ -167,14 +167,14 @@ export default function AddShop({ items }: any) {
       {messageInfo.status == "success" &&
         <div className="toast toast-center z-50">
           <div className="alert alert-success text-white py-2">
-            <span className="font-thin">{messageInfo.message}</span>
+            <span className="text-sm">{messageInfo.message}</span>
           </div>
         </div>}
 
       {messageInfo.status == "error" &&
         <div className="toast toast-center z-50">
           <div className="alert alert-error text-white py-2">
-            <span className="font-thin">{messageInfo.message}</span>
+            <span className="text-sm">{messageInfo.message}</span>
           </div>
         </div>}
 
@@ -278,37 +278,37 @@ export default function AddShop({ items }: any) {
                           <td>
                             <div className="form-control">
                               <label className="cursor-pointer label">
-                                <input type="checkbox" checked={itemsChecked.some((item: any) => item.id === row.id)} value={row.id} id={index + "-" + row.price} onChange={handleCheck} className="checkbox checkbox-warning" />
+                                <input type="checkbox" checked={itemsChecked.some((item: any) => item.id === row.items.id)} value={row.items.id} id={index + "-" + row.items.price} onChange={handleCheck} className="checkbox checkbox-warning" />
                               </label>
                             </div>
                           </td>
                           <td className="">{index + 1}</td>
-                          <td className="px-3">{row.name} <span className="block sm:hidden font-bold">(Rp{row.price})</span></td>
-                          <td className="hidden sm:block px-6">{row.price}</td>
+                          <td className="px-3">{row.items.name} <span className="block sm:hidden font-bold">(Rp{row.items.price})</span></td>
+                          <td className="hidden sm:block px-6">{row.items.price}</td>
                           <td className="">
                             <input
                               type="number"
                               min={1}
-                              id={"amount-" + row.id}
-                              value={itemsChecked.filter((item) => item.id==row.id)[0]?.amount || ''}
+                              id={"amount-" + row.items.id}
+                              value={itemsChecked.filter((item) => item.id==row.items.id)[0]?.amount || ''}
                               onChange={handleAmountInput}
                               // required
                               autoComplete="off"
                               placeholder="2"
-                              disabled={!itemsChecked.some((item: any) => item.id === row.id)}
+                              disabled={!itemsChecked.some((item: any) => item.id === row.items.id)}
                               className="input input-sm w-full input-bordered"
                             />
                           </td>
                           <td className="px-6">
                             <input
                               type="text"
-                              id={"unit-" + row.id}
-                              value={itemsChecked.filter((item) => item.id==row.id)[0]?.unit || ''}
+                              id={"unit-" + row.items.id}
+                              value={itemsChecked.filter((item) => item.id==row.items.id)[0]?.unit || ''}
                               onChange={handleUnitInput}
                               // required
                               autoComplete="off"
                               placeholder="kg"
-                              disabled={!itemsChecked.some((item: any) => item.id === row.id)}
+                              disabled={!itemsChecked.some((item: any) => item.id === row.items.id)}
                               className="input input-sm w-full input-bordered"
                             />
                           </td>

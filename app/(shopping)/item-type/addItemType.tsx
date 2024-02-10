@@ -66,14 +66,14 @@ export default function AddItemType() {
       {messageInfo.status == "success" &&
         <div className="toast toast-center z-50">
           <div className="alert alert-success text-white py-2">
-            <span>{messageInfo.message}</span>
+            <span className="text-sm">{messageInfo.message}</span>
           </div>
         </div>}
 
       {messageInfo.status == "error" &&
         <div className="toast toast-center z-50">
           <div className="alert alert-error text-white py-2">
-            <span>{messageInfo.message}</span>
+            <span className="text-sm">{messageInfo.message}</span>
           </div>
         </div>}
 

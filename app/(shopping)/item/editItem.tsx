@@ -40,10 +40,10 @@ export default function EditItem({ itemId, itemTypes }: any) {
       }
 
       setInputData({
-        id: resp.id,
-        name: resp.name,
-        typeId: resp.typeId,
-        price: resp.price
+        id: resp.items.id,
+        name: resp.items.name,
+        typeId: resp.items.typeId,
+        price: resp.items.price
       })
     }
   }
@@ -98,14 +98,14 @@ export default function EditItem({ itemId, itemTypes }: any) {
       {messageInfo.status == "success" &&
         <div className="toast toast-center z-50">
           <div className="alert alert-success text-white py-2">
-            <span>{messageInfo.message}</span>
+            <span className="text-sm">{messageInfo.message}</span>
           </div>
         </div>}
 
       {messageInfo.status == "error" &&
         <div className="toast toast-center z-50">
           <div className="alert alert-error text-white py-2">
-            <span>{messageInfo.message}</span>
+            <span className="text-sm">{messageInfo.message}</span>
           </div>
         </div>}
 
