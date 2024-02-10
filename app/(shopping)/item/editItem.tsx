@@ -40,10 +40,10 @@ export default function EditItem({ itemId, itemTypes }: any) {
       }
 
       setInputData({
-        id: resp.items.id,
-        name: resp.items.name,
-        typeId: resp.items.typeId,
-        price: resp.items.price
+        id: resp.id,
+        name: resp.name,
+        typeId: resp.typeId,
+        price: resp.price
       })
     }
   }

@@ -38,7 +38,7 @@ export default async function ItemPage() {
                   <td className="px-6 py-4">{row.item_types.name}</td>
                   <td className="px-6 py-4">{row.items.price}</td>
                   <td>
-                    <EditItem itemId={row.id} itemTypes={itemTypes} />
+                    <EditItem itemId={row.items.id} itemTypes={itemTypes} />
                   </td>
                 </tr>
               ))}
