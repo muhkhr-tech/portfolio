@@ -4,6 +4,13 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import AddShopAction from "./components/action/addShop"
 
+interface ItemsChecked {
+  id: number;
+  price: number;
+  amount: number;
+  unit: string
+}
+
 export default function AddShop({ items }: any) {
   const [modal, setModal] = useState(false)
   const [isLoading, setLoading] = useState(false)
@@ -14,9 +21,14 @@ export default function AddShop({ items }: any) {
   })
   const [itemSearched, setItemSearched] = useState(items)
   const [itemName, setItemName] = useState('')
-  const [amount, setAmount] = useState<number[]>([])
-  const [unit, setUnit] = useState<string[]>([])
-  const [itemsChecked, setItemsChecked] = useState([])
+  const [itemsChecked, setItemsChecked] = useState<ItemsChecked[]>([
+    {
+      id: 0,
+      price: 0,
+      amount: 0,
+      unit: ''
+    }
+  ])
   const [messageInfo, setMessageInfo] = useState({
     status: '',
     message: ''
@@ -34,7 +46,14 @@ export default function AddShop({ items }: any) {
         ['description']: ''
       }))
 
-      setItemsChecked([])
+      setItemsChecked([
+        {
+          id: 0,
+          price: 0,
+          amount: 0,
+          unit: ''
+        }
+      ])
     }
   }
 
@@ -70,23 +89,17 @@ export default function AddShop({ items }: any) {
       )
 
       if (isItemChecked) {
-        setAmount((prevAmount) => {
-          const updatedAmount = [...prevAmount]
-          updatedAmount[parseInt(e.target.id.split("-")[0])] = 0
-          return updatedAmount
-        })
-
-        setUnit((prevUnit) => {
-          const updatedUnit = [...prevUnit]
-          updatedUnit[parseInt(e.target.id.split("-")[0])] = ''
-          return updatedUnit
-        })
         return prevData.filter((item: any) => item.id !== parseInt(e.target.value))
       } else {
 
+        const amountElement = document.getElementById(`amount-${e.target.value}`) as HTMLInputElement
+        const unitElement = document.getElementById(`unit-${e.target.value}`) as HTMLInputElement
+
         return [...prevData, {
           id: parseInt(e.target.value),
-          price: parseInt(e.target.id.split('-')[1])
+          price: parseInt(e.target.id.split('-')[1]),
+          amount: amountElement?.value,
+          unit: unitElement?.value
         }];
       }
     })
@@ -100,17 +113,17 @@ export default function AddShop({ items }: any) {
   }
 
   const handleAmountInput = (e: any) => {
-    setAmount((prevData) => {
+    setItemsChecked((prevData) => {
       const updatedAmount = [...prevData]
-      updatedAmount[parseInt(e.target.id.split("-")[1])] = parseInt(e.target.value)
+      updatedAmount.filter((item: any) => item.id == parseInt(e.target.id.split("-")[1]))[0].amount = parseInt(e.target.value)
       return updatedAmount
     })
   }
 
   const handleUnitInput = (e: any) => {
-    setUnit((prevData) => {
+    setItemsChecked((prevData) => {
       const updatedUnit = [...prevData]
-      updatedUnit[parseInt(e.target.id.split("-")[1])] = e.target.value
+      updatedUnit.filter((item: any) => item.id == parseInt(e.target.id.split("-")[1]))[0].unit = e.target.value
       return updatedUnit
     })
   }
@@ -119,7 +132,7 @@ export default function AddShop({ items }: any) {
     e.preventDefault()
 
     try {
-      await AddShopAction(inputData, itemsChecked, amount, unit)
+      await AddShopAction(inputData, itemsChecked)
       router.refresh()
       setModal(false)
       setMessageInfo((prevData) => ({
@@ -154,14 +167,14 @@ export default function AddShop({ items }: any) {
       {messageInfo.status == "success" &&
         <div className="toast toast-center z-50">
           <div className="alert alert-success text-white py-2">
-            <span>{messageInfo.message}</span>
+            <span className="font-thin">{messageInfo.message}</span>
           </div>
         </div>}
 
       {messageInfo.status == "error" &&
         <div className="toast toast-center z-50">
           <div className="alert alert-error text-white py-2">
-            <span>{messageInfo.message}</span>
+            <span className="font-thin">{messageInfo.message}</span>
           </div>
         </div>}
 
@@ -276,10 +289,10 @@ export default function AddShop({ items }: any) {
                             <input
                               type="number"
                               min={1}
-                              id={"amount-" + index}
-                              value={amount[index] || ''}
+                              id={"amount-" + row.id}
+                              value={itemsChecked.filter((item) => item.id==row.id)[0]?.amount || ''}
                               onChange={handleAmountInput}
-                              required
+                              // required
                               autoComplete="off"
                               placeholder="2"
                               disabled={!itemsChecked.some((item: any) => item.id === row.id)}
@@ -289,10 +302,10 @@ export default function AddShop({ items }: any) {
                           <td className="px-6">
                             <input
                               type="text"
-                              id={"unit-" + index}
-                              value={unit[index] || ''}
+                              id={"unit-" + row.id}
+                              value={itemsChecked.filter((item) => item.id==row.id)[0]?.unit || ''}
                               onChange={handleUnitInput}
-                              required
+                              // required
                               autoComplete="off"
                               placeholder="kg"
                               disabled={!itemsChecked.some((item: any) => item.id === row.id)}
