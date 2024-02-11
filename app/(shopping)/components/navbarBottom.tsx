@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Menu from "../lib/navigation/menu";
 
-export default function NavbarSection({pathname}: {pathname: string}) {
+export default function NavbarBottomSection({pathname}: {pathname: string}) {
   const menu = Menu()
 
   return (
