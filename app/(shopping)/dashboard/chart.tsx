@@ -1,13 +1,18 @@
 'use client'
 
 import { useEffect } from "react"
-import { Chart } from "chart.js";
+import { Chart } from "chart.js/auto";
 
 function Example() {
   useEffect(() => {
     var canvas = (document.getElementById('myChart') as HTMLCanvasElement)
 
     if (canvas) {
+      var existingChart = Chart.getChart(canvas);
+      if (existingChart) {
+        existingChart.destroy();
+      }
+      
       var ctx = canvas.getContext('2d');
   
       if (ctx) {
