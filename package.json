@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@vercel/postgres": "^0.7.2",
-    "chart.js": "^2.9.4",
+    "chart.js": "^4.4.1",
     "dotenv": "^16.4.1",
     "drizzle-orm": "^0.29.3",
     "flowbite": "^2.2.1",
