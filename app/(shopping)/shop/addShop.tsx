@@ -131,6 +131,8 @@ export default function AddShop({ items }: any) {
   const handleSubmit = async (e: any) => {
     e.preventDefault()
 
+    setLoading(true)
+
     try {
       await AddShopAction(inputData, itemsChecked)
       router.refresh()
@@ -292,7 +294,7 @@ export default function AddShop({ items }: any) {
                               id={"amount-" + row.items.id}
                               value={itemsChecked.filter((item) => item.id==row.items.id)[0]?.amount || ''}
                               onChange={handleAmountInput}
-                              // required
+                              required
                               autoComplete="off"
                               placeholder="2"
                               disabled={!itemsChecked.some((item: any) => item.id === row.items.id)}
@@ -305,7 +307,7 @@ export default function AddShop({ items }: any) {
                               id={"unit-" + row.items.id}
                               value={itemsChecked.filter((item) => item.id==row.items.id)[0]?.unit || ''}
                               onChange={handleUnitInput}
-                              // required
+                              required
                               autoComplete="off"
                               placeholder="kg"
                               disabled={!itemsChecked.some((item: any) => item.id === row.items.id)}

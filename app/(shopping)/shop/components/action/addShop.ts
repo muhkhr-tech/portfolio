@@ -15,6 +15,9 @@ export default async function AddShopAction(inputData: any, itemsChecked: any) {
     itemsChecked.map(async (item: any) => {
       
       if (item.id !== 0) {
+
+        totalPrice = totalPrice + (item.amount * item.price)
+
         await db.insert(ShoppingItem).values({
           itemId: item.id,
           shoppingId: shop[0].id,
@@ -23,8 +26,6 @@ export default async function AddShopAction(inputData: any, itemsChecked: any) {
           unit: item.unit,
           totalPrice: item.amount * item.price
         })
-
-        totalPrice = totalPrice + (item.amount * item.price)
       }
     })
 

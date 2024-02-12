@@ -9,7 +9,7 @@ export default function SidebarSection({ pathname }: { pathname: string }) {
       {menu.map((item, index) => (
         <li key={index} className='mb-1 me-0'>
           <Link className={pathname === item.path ? 'text-blue-700 flex justify-end' : 'bg-base-100 flex justify-end'} href={item.path}>
-            {item.icon}</Link></li>
+          {item.name} {item.icon}</Link></li>
       ))}
     </ul>
   )
