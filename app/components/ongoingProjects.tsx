@@ -10,12 +10,17 @@ export default function OngoingProjectsSection() {
         <div className="mb-2 text-sm">
           <p className="text-slate-500">Latar Belakang :</p>
           <p>
-            Sulitnya mengatur pengeluaran bulanan kami.
+            Berdasarkan pengalaman kami, kami merasa sulit mengatur pengeluaran bulanan karena seringnya membeli barang yang tidak sesuai dengan budget kami.
           </p>
         </div>
         <div className="text-sm">
           <p className="text-slate-500">Teknologi yang digunakan :</p>
-          NextJs
+          <ul className="ms-4 list-disc">
+            <li>Next.js</li>
+            <li>Tailwind CSS</li>
+            <li>Postgres Serverless SQL</li>
+            <li>Vercel</li>
+          </ul>
         </div>
       </ul>
     </div>

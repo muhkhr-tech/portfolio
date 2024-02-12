@@ -1,7 +1,7 @@
 export default function ProjectsSection() {
   return (
     <div className="mb-10">
-      <h2 className="text-3xl text-slate-700 mb-5">Projects</h2>
+      <h2 className="text-3xl text-slate-700 mb-5">Works</h2>
       <div className="mb-5">
         <p><strong>~ Freelance</strong></p>
         <p className="text-sm text-slate-600 mb-3"><i>Fullstack Developer | Desember 2019 – Juni 2020</i></p>

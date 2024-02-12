@@ -7,7 +7,7 @@ import WelcomeSection from "./components/welcome";
 
 export default function Home() {
   return (
-    <div className="max-w-screen-xl mx-auto p-4">
+    <div className="max-w-screen-md mx-auto p-4">
       <NavbarSection />
       <WelcomeSection />
       <ProjectsSection />
