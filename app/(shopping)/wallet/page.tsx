@@ -1,7 +1,7 @@
 import SetIncome from "./setIncome"
 
 export default async function WalletPage() {
-  const resp = await fetch(`${process.env.BASE_URL}/api/deposit`, {cache: 'no-store'})
+  const resp = await fetch(`${process.env.BASE_URL}/api/deposit`, { cache: 'no-store' })
   const rows = await resp.json()
 
   const convertPurchasedDate = (date: string) => {
@@ -11,17 +11,18 @@ export default async function WalletPage() {
 
   return (
     <div>
-     <div className="block sm:hidden">
+      <div className="block sm:hidden">
+        <SetIncome />
         {rows.map((row: any, index: number) => (
           <div key={index} className="mb-1 border-b-2">
-            <h4 className="font-semibold text-xs">{index+1}. {row.description}</h4>
+            <h4 className="font-semibold text-xs">{index + 1}. {row.description}</h4>
             <p className="text-xs">{new Intl.DateTimeFormat('id', {
-                  weekday: 'long',
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric',
-                }).format(convertPurchasedDate(row.savedOn))}</p>
-                <p className="text-xs">Rp{row.amount}</p>
+              weekday: 'long',
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            }).format(convertPurchasedDate(row.savedOn))}</p>
+            <p className="text-xs">Rp{row.amount}</p>
           </div>))}
       </div>
       <div className="hidden sm:block">
@@ -41,14 +42,13 @@ export default async function WalletPage() {
                 <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   <td className="px-6 py-4">{index + 1}</td>
                   <td className="px-6 py-4">{new Intl.DateTimeFormat('id', {
-                  weekday: 'long',
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric',
-                }).format(convertPurchasedDate(row.savedOn))}</td>
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                  }).format(convertPurchasedDate(row.savedOn))}</td>
                   <td className="px-6 py-4">{row.amount}</td>
                   <td className="px-6 py-4">{row.description}</td>
-                  {/* <td className="px-6 py-4">{row}</td> */}
                 </tr>
               ))}
             </tbody>
