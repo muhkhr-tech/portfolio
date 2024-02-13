@@ -1,8 +1,12 @@
+'use client'
+
 import Link from "next/link";
 import Menu from "../lib/navigation/menu";
+import { usePathname } from "next/navigation";
 
-export default function NavbarBottomSection({pathname}: {pathname: string}) {
+export default function NavbarBottomSection() {
   const menu = Menu()
+  const pathname = usePathname()
 
   return (
     <ul className="fixed bottom-0 flex items-start justify-between w-screen py-4 z-10 bg-base-100 px-3">

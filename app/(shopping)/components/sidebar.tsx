@@ -1,8 +1,12 @@
+'use client'
+
 import Link from "next/link";
 import Menu from "../lib/navigation/menu";
+import { usePathname } from "next/navigation";
 
-export default function SidebarSection({ pathname }: { pathname: string }) {
+export default function SidebarSection() {
   const menu = Menu()
+  const pathname = usePathname()
 
   return (
     <ul className="menu w-56 h-full min-h-screen mt-5 px-5">
