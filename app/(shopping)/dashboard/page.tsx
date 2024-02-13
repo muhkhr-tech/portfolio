@@ -53,7 +53,7 @@ export default async function DashoardPage() {
         <Example />
       </div>
       <div>
-        <div className="card card-compact bg-base-100 shadow-sm border mb-2">
+        <div className="block sm:hidden card card-compact bg-base-100 shadow-sm border mb-2">
           <TypeItemsCarousel />
         </div>
         <div className={`${status().bgColor} card card-compact shadow-sm mb-2`}>
@@ -63,7 +63,7 @@ export default async function DashoardPage() {
               {status().message}</p>
           </div>
         </div>
-        {/* <div className="card card-compact bg-base-100 shadow-sm border border-slate-50 mb-2">
+        <div className="hidden sm:block card card-compact bg-base-100 shadow-sm border border-slate-50 mb-2">
           <div className="card-body">
             <h2 className="card-title">Transaksi</h2>
             <p className="font-semibold text-slate-500">Pemasukan</p>
@@ -75,7 +75,7 @@ export default async function DashoardPage() {
             <p className="font-semibold text-slate-500">Saldo</p>
             <p className="text-warning">Rp{wallet[0].balance}</p>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   )
