@@ -53,7 +53,7 @@ export default async function DashoardPage() {
         <Example />
       </div>
       <div>
-        <div className="block sm:hidden card card-compact bg-base-100 shadow-sm border mb-2">
+        <div className="flex sm:hidden card card-compact bg-base-100 shadow-sm border mb-2">
           <TypeItemsCarousel />
         </div>
         <div className={`${status().bgColor} card card-compact shadow-sm mb-2`}>
