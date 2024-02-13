@@ -1,11 +1,11 @@
 'use client'
 
 import Link from "next/link";
-import Menu from "../lib/navigation/menu";
 import { usePathname } from "next/navigation";
+import MenuNavbarBottom from "../lib/navigation/menuNavbarBottom";
 
 export default function NavbarBottomSection() {
-  const menu = Menu()
+  const menu = MenuNavbarBottom()
   const pathname = usePathname()
 
   return (
