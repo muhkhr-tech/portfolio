@@ -123,3 +123,17 @@ export const Withdraw = pgTable(
     updatedAt: timestamp('updated_at').defaultNow().notNull(),
   }
 );
+
+export const BalanceChart = pgTable(
+  'balance_charts',
+  {
+    id: serial('id').primaryKey(),
+    month: integer('month').notNull(),
+    year: integer('year').notNull(),
+    balance: integer('balance').notNull(),
+    income: integer('income').notNull(),
+    expenditure: integer('expenditure').notNull(),
+    // createdAt: timestamp('created_at').defaultNow().notNull(),
+    // updatedAt: timestamp('updated_at').defaultNow().notNull(),
+  }
+);

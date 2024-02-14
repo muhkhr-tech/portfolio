@@ -63,11 +63,11 @@ export default function DetailWallet() {
                 <p className="text-xs font-semibold">Rp{data[0]?.balance}</p>
               </div>
               <div className="mb-3 text-sm">
-                <p>Pemasukan</p>
+                <p>Pengeluaran</p>
                 <p className="text-xs font-semibold">Rp{data[0]?.expenditure}</p>
               </div>
               <div className="mb-3 text-sm">
-                <p>Pengeluaran</p>
+                <p>Pemasukan</p>
                 <p className="text-xs font-semibold">Rp{data[0]?.income}</p>
               </div>
             </div>

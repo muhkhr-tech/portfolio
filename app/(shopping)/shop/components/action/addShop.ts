@@ -1,7 +1,8 @@
 'use server'
 
 import { db } from "@/lib/db";
-import { Shopping, ShoppingItem, Wallet, Withdraw } from "@/lib/schema";
+import { BalanceChart, Shopping, ShoppingItem, Wallet, Withdraw } from "@/lib/schema";
+import { and, eq } from "drizzle-orm";
 
 export default async function AddShopAction(inputData: any, itemsChecked: any) {
   try {
@@ -11,6 +12,9 @@ export default async function AddShopAction(inputData: any, itemsChecked: any) {
     }).returning()
 
     let totalPrice: number = 0
+    const purchaseDate = inputData.purchaseDate.split('-')
+    const year = parseInt(purchaseDate[0])
+    const month = parseInt(purchaseDate[1])
 
     itemsChecked.map(async (item: any) => {
       
@@ -41,6 +45,24 @@ export default async function AddShopAction(inputData: any, itemsChecked: any) {
       balance: wallet[0].balance - totalPrice,
       expenditure: wallet[0].expenditure + totalPrice,
     })
+
+  const isBalanceChart = await db.select().from(BalanceChart).where(and(eq(BalanceChart.month, month), eq(BalanceChart.month, month)))
+  
+  if (isBalanceChart.length > 0) {
+    await db.update(BalanceChart).set({
+      balance: isBalanceChart[0].balance - totalPrice,
+      expenditure: isBalanceChart[0].expenditure + totalPrice,
+    }).where(and(eq(BalanceChart.month, month), eq(BalanceChart.month, month)))
+  }
+  else {
+    await db.insert(BalanceChart).values({
+      month: month,
+      year: year,
+      balance: wallet[0].balance - totalPrice,
+      income: 0,
+      expenditure: wallet[0].expenditure + totalPrice
+    })
+  }
 
   } catch (err) {
     console.log(err)

@@ -1,4 +1,5 @@
-import Example from "./chart"
+import FilterYear from "../components/dashboard/filterYear"
+import BalanceChart from "./balanceChart"
 import TypeItemsCarousel from "./typeItemsCarousel"
 
 export default async function DashoardPage() {
@@ -48,11 +49,15 @@ export default async function DashoardPage() {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
-      <div className="hidden sm:block col-span-4">
-        <Example />
+    <div>
+      <div className="hidden mb-2 sm:grid grid-cols-1 sm:grid-cols-4">
+        <FilterYear/>
       </div>
-      <div>
+    <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+      <div className="hidden sm:block col-span-3">
+        <BalanceChart />
+      </div>
+      <div className="col-span-1">
         <div className="flex sm:hidden card card-compact bg-base-100 shadow-sm border mb-2">
           <TypeItemsCarousel />
         </div>
@@ -77,6 +82,7 @@ export default async function DashoardPage() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }
