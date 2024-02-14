@@ -1,8 +1,12 @@
 'use client'
 
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
+import { useState } from "react"
 
 export default function FilterYear() {
+  const searchParams = useSearchParams()
+  const yearParam: any = searchParams.get('year')
+  const [yearState, setYearState] = useState(yearParam)
   const router = useRouter()
 
   const startDate = 2020
@@ -15,12 +19,12 @@ export default function FilterYear() {
     }
 
     const handleOption = (e: any) => {
-      console.log(e.target.value)
+      setYearState(e.target.value)
       router.push(`/dashboard?year=${e.target.value}`)
     }
     
     return (
-        <select name="" id="" onChange={handleOption} className="select select-sm select-bordered">
+        <select name="" id="" onChange={handleOption} value={yearState} className="select select-sm select-bordered">
           {years.map((year: any, index: any) => (
             <option key={index} value={year}>{year}</option>
           ))}

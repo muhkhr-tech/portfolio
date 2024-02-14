@@ -44,21 +44,31 @@ function BalanceChart() {
     };
 
     fetchData();
+    console.log(year,'tahun')
+    // console.log(data)
 
   }, [year]);
 
   useEffect(() => {
-    setChartData(prevChartData => {
-      const newChartData = { ...prevChartData };
-
-      data.forEach(item => {
-        newChartData.dataIncome[item.month] = item.income;
-        newChartData.dataExpenditure[item.month] = item.expenditure;
-        newChartData.dataBalance[item.month] = item.balance;
+    if (data.length > 0) {
+      setChartData(prevChartData => {
+        const newChartData = { ...prevChartData };
+  
+        data.forEach(item => {
+          newChartData.dataIncome[item.month] = item.income;
+          newChartData.dataExpenditure[item.month] = item.expenditure;
+          newChartData.dataBalance[item.month] = item.balance;
+        });
+        return newChartData;
       });
-
-      return newChartData;
-    });
+    } else {
+      setChartData({
+        dataIncome: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      dataExpenditure: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      dataBalance: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      })
+    }
+    
   }, [data]);
 
   useEffect(() => {
