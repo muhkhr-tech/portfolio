@@ -18,9 +18,8 @@ export default function ActivateButton({ typeId, status }: any) {
       console.log(err)
     } finally {
       setLoading(false)
+      router.refresh()
     }
-    
-    router.refresh()
   }
   
   return (
