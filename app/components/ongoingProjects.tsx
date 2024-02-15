@@ -19,6 +19,7 @@ export default function OngoingProjectsSection() {
             <li>Next.js</li>
             <li>Tailwind CSS</li>
             <li>Postgres Serverless SQL</li>
+            <li>Drizzle ORM</li>
             <li>Vercel</li>
           </ul>
         </div>
