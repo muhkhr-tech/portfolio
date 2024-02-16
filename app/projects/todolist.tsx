@@ -11,7 +11,7 @@ export default function TodolistPage(params: any) {
 
     <div className="mb-10 transition ease-in duration-300">
       <ul className="mb-5">
-        <p className="mb-2 text-sm">Pencatatan aktifitas harian dengan menggunakan 3 status "akan", "sedang", dan "selesai".</p>
+        <p className="mb-2 text-sm">Pencatatan aktifitas harian dengan menggunakan 3 status akan, sedang, dan selesai.</p>
         <div className="mb-2 text-sm">
           <p className="text-slate-500">Latar Belakang :</p>
           <p>

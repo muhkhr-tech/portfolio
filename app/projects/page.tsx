@@ -39,7 +39,7 @@ export default function ProjectsPage() {
               /></figure>
             <div className="card-body">
               <h2 className="card-title">Todo List</h2>
-              <p>Pencatatan aktifitas harian dengan menggunakan 3 status "akan", "sedang", dan "selesai".</p>
+              <p>Pencatatan aktifitas harian dengan menggunakan 3 status akan, sedang, dan selesai.</p>
               <div className="card-actions items-end justify-between">
                 <div>Status: <span className="text-red-500">Sedang Dikerjakan</span></div>
                 <button className="btn btn-sm btn-primary">Detail</button>
