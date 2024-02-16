@@ -31,6 +31,7 @@ export default function TodolistPage(params: any) {
             <li>Tailwind CSS</li>
             <li>Sqlite</li>
             <li>Drizzle ORM</li>
+            <li>React-icons</li>
             <li>Vercel</li>
           </ul>
         </div>

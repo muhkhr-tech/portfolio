@@ -36,6 +36,7 @@ export default function BelanjainajaPage(params: any) {
               <li>Tailwind CSS</li>
               <li>Postgres Serverless SQL</li>
               <li>Drizzle ORM</li>
+              <li>React-icons</li>
               <li>Vercel</li>
             </ul>
           </div>
