@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function OngoingProjectsSection() {
   return (
     <div className="mb-10 transition ease-in duration-300" id="ongoing">
@@ -13,7 +15,7 @@ export default function OngoingProjectsSection() {
             Berdasarkan pengalaman kami, kami merasa sulit mengatur pengeluaran bulanan karena seringnya membeli barang yang tidak sesuai dengan budget kami.
           </p>
         </div>
-        <div className="text-sm">
+        <div className="text-sm mb-7">
           <p className="text-slate-500">Teknologi yang digunakan :</p>
           <ul className="ms-4 list-disc">
             <li>Next.js</li>
@@ -22,6 +24,32 @@ export default function OngoingProjectsSection() {
             <li>Drizzle ORM</li>
             <li>Vercel</li>
           </ul>
+        </div>
+        <div>
+          <h4 className="text-semibold">1. Tampilan UI Dashboard:</h4>
+          <Image
+            src="/dashboard.png"
+            width={900}
+            height={900}
+            alt="dashboard page"
+            className="mb-4 border rounded-lg shadow-md"
+          />
+          <h4 className="text-semibold">2. Tampilan UI Belanja:</h4>
+          <Image
+            src="/shop.png"
+            width={900}
+            height={900}
+            alt="belanja page"
+            className="mb-4 border rounded-lg shadow-md"
+          />
+          <h4 className="text-semibold">3. Tampilan UI Dompet :</h4>
+          <Image
+            src="/dashboard.png"
+            width={900}
+            height={900}
+            alt="saldo page"
+            className="mb-4 border rounded-lg shadow-md"
+          />
         </div>
       </ul>
     </div>

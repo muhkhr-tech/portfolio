@@ -10,12 +10,12 @@ export default function SkillsSection() {
         <p className="text-sm text-slate-600 mb-3"><i>Next JS, Bootstrap 4 & 5, Tailwind CSS, HTML, CSS</i></p>
 
         <p><strong>~ Backend</strong></p>
-        <p className="text-sm text-slate-600 mb-3"><i>Flask, FastApi, Django</i><br />
+        <p className="text-sm text-slate-600 mb-3"><i>Flask, FastApi, Django</i><br /></p>
         <p>Note:</p>
           <ul className="ms-4">
             <li className="list-disc">Semua projek/product yang dikerjakan dibuat dengan menggunakan Flask</li>
             <li className="list-disc">Sudah pernah mencoba FastAPI & Django, tapi belum pernah digunakan selama pengalaman kerja.</li>
-          </ul></p>
+          </ul>
 
         <p><strong>~ Lainnya</strong></p>
         <p className="text-sm text-slate-600 mb-3"><i>Git</i></p>
