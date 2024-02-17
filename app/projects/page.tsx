@@ -32,7 +32,7 @@ export default function ProjectsPage() {
           <div className="card card-compact border rounded-lg w-full bg-base-100 shadow-md">
             <figure>
               <Image
-                src="/dashboard.png"
+                src="/do-todolist.png"
                 width={900}
                 height={900}
                 alt="dashboard page"
