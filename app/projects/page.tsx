@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { HiOutlineCheckCircle, HiOutlineXCircle } from "react-icons/hi2";
 
 export default function ProjectsPage() {
   return (
@@ -19,9 +20,8 @@ export default function ProjectsPage() {
             <div className="card-body">
               <h2 className="card-title">BelanjainAja</h2>
               <p>Sebuah aplikasi berbasis web untuk mengatur pengeluaran belanja bulanan.</p>
-              <div className="card-actions items-end justify-between">
-                <div>Status: <span className="text-red-500">Sedang Dikerjakan</span></div>
-                <button className="btn btn-sm btn-primary">Detail</button>
+              <div className="card-actions">
+              <div className="badge badge-error text-white py-3 font-semibold text-xs"><HiOutlineXCircle size={17}/> Sedang Dikerjakan</div>
               </div>
             </div>
           </div>
@@ -40,9 +40,28 @@ export default function ProjectsPage() {
             <div className="card-body">
               <h2 className="card-title">Todo List</h2>
               <p>Pencatatan aktifitas harian dengan menggunakan 3 status akan, sedang, dan selesai.</p>
-              <div className="card-actions items-end justify-between">
-                <div>Status: <span className="text-red-500">Sedang Dikerjakan</span></div>
-                <button className="btn btn-sm btn-primary">Detail</button>
+              <div className="card-actions">
+              <div className="badge badge-accent text-white py-3 font-semibold text-xs"><HiOutlineCheckCircle size={17}/> Selesai</div>
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        <Link
+          href={'/projects/taskmaster'}>
+          <div className="card card-compact border rounded-lg w-full bg-base-100 shadow-md">
+            <figure>
+              <Image
+                src="/no-image.jpg"
+                width={900}
+                height={300}
+                alt="TaskMaster App"
+              /></figure>
+            <div className="card-body">
+              <h2 className="card-title">Taskmaster</h2>
+              <p>Pengembangan dari projek todolist, taskmaster untuk mengatur kegiatan jangka panjang yang memiliki due date.</p>
+              <div className="card-actions">
+                <div className="badge badge-error text-white py-3 font-semibold text-xs"><HiOutlineXCircle size={17}/> Sedang Dikerjakan</div>
               </div>
             </div>
           </div>
