@@ -17,8 +17,15 @@ export default function SkillsSection() {
             <li className="list-disc">Sudah pernah mencoba FastAPI & Django, tapi belum pernah digunakan selama pengalaman kerja.</li>
           </ul>
 
+        <p><strong>~ Database</strong></p>
+        <p className="text-sm text-slate-600 mb-3">
+        <i>MySQL</i>, <i>PostgreSQL</i>
+        </p>
+
         <p><strong>~ Lainnya</strong></p>
-        <p className="text-sm text-slate-600 mb-3"><i>Git</i></p>
+        <p className="text-sm text-slate-600 mb-3">
+        <i>Git</i>, <i>Docker</i>
+        </p>
 
       </div>
     </div>

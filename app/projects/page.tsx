@@ -48,17 +48,17 @@ export default function ProjectsPage() {
         </Link>
 
         <Link
-          href={'/projects/taskmaster'}>
+          href={'/projects/dodoingdone'}>
           <div className="card card-compact border rounded-lg w-full bg-base-100 shadow-md">
             <figure>
               <Image
-                src="/no-image.jpg"
+                src="/home-dodoingdone.png"
                 width={900}
                 height={300}
                 alt="TaskMaster App"
               /></figure>
             <div className="card-body">
-              <h2 className="card-title">Taskmaster</h2>
+              <h2 className="card-title">DoDoingDone</h2>
               <p>Pengembangan dari projek todolist, taskmaster untuk mengatur kegiatan jangka panjang yang memiliki due date.</p>
               <div className="card-actions">
                 <div className="badge badge-error text-white py-3 font-semibold text-xs"><HiOutlineXCircle size={17}/> Sedang Dikerjakan</div>

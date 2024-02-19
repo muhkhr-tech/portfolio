@@ -1,5 +1,5 @@
 import BelanjainajaPage from "../belanjainaja";
-import TaskmasterPage from "../taskmaster";
+import DoDoingDonePage from "../dodoingdone";
 import TodolistPage from "../todolist";
 
 export default function ProjectDetailPage({params}: {params: {slug: string}}) {
@@ -11,9 +11,9 @@ export default function ProjectDetailPage({params}: {params: {slug: string}}) {
     return (
       <TodolistPage slug={params.slug}/>
     )
-  } else if (params.slug == 'taskmaster') {
+  } else if (params.slug == 'dodoingdone') {
     return (
-      <TaskmasterPage slug={params.slug}/>
+      <DoDoingDonePage slug={params.slug}/>
     )
   }
 }
